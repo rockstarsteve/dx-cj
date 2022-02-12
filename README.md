@@ -8,11 +8,11 @@
 
 技术栈：vue.js(单页面vuejs引入) jquery
 
-![image-20220212221830019](.\README.assets\image-20220212221830019.png)
+![image-20220212221830019](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212221830019.png)
 
-![image-20220212222649780](.\README.assets\image-20220212222649780.png)
+![image-20220212222649780](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212222649780.png)
 
-![image-20220212222354670](.\README.assets\image-20220212222354670.png)
+![image-20220212222354670](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212222354670.png)
 
 ### 管理后台（若依RuoYi v3.8.1  2022.2.12）
 
@@ -20,11 +20,11 @@ springboot mysql redis vue
 
 #### 管理前端
 
-![image-20220212222154593](.\README.assets\image-20220212222154593.png)
+![image-20220212222154593](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212222154593.png)
 
-![image-20220212222309545](.\README.assets\image-20220212222309545.png)
+![image-20220212222309545](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212222309545.png)
 
-![image-20220212222327456](.\README.assets\image-20220212222327456.png)
+![image-20220212222327456](https://github.com/rockstarsteve/dx-cj/blob/main/README.assets/image-20220212222327456.png)
 
 
 
