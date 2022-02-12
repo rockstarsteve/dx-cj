@@ -1,0 +1,58 @@
+.logo {
+    border-radius: 50%;
+    margin: 0 auto;
+    padding-top: 10vh;
+    padding-bottom: 100px;
+}
+.logo img {
+    width: 70%;
+}
+
+.cj-input {
+    color: #fff;
+    display: block;
+    box-sizing: border-box;
+    width: 300px;
+    line-height: inherit;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+    resize: none;
+    user-select: auto;
+    border: #fff solid 1px;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 10px;
+    outline: none;
+    border-radius: 5px;
+}
+
+.cj-input::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #eee;
+    font-size: 12px;
+    text-align: left;
+}
+.cj-input::-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #eee;
+    font-size: 12px;
+    text-align: left;
+}
+.cj-input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #eee;
+    font-size: 12px;
+    text-align: left;
+}
+.cj-input::-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #eee;
+    font-size: 12px;
+    text-align: left;
+}
+
+.cj-button {
+    width: 300px;
+    color: red !important;
+}

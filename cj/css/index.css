@@ -1,0 +1,216 @@
+/*主体*/
+.main {
+    position: relative;
+    margin: 0;
+    left: -2%;
+    height: 10.02666667rem;
+    display: none;
+}
+.rule,
+.my {
+    position: absolute;
+    top: 0.4rem;
+    width: 1.6rem;
+    height: 0.6rem;
+    background: no-repeat center / contain;
+}
+.rule {
+    left: 2.26666667rem;
+    background-image: url('../image/rule.png');
+}
+.my {
+    right: 2.26666667rem;
+    background-image: url('../image/my.png');
+}
+/*游戏盒子*/
+.box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 9.2rem;
+    height: 8.02666667rem;
+    background-image: url('../image/choujiang.png');
+}
+.coin {
+    position: absolute;
+    left: 0.4rem;
+    top: -0.53333333rem;
+    width: 1.50666667rem;
+    height: 1rem;
+    background-image: url('../image/coin.png');
+    -o-animation: jump 0.5s linear infinite alternate;
+    -ms-animation: jump 0.5s linear infinite alternate;
+    -moz-animation: jump 0.5s linear infinite alternate;
+    -webkit-animation: jump 0.5s linear infinite alternate;
+    animation: jump 0.5s linear infinite alternate;
+}
+@keyframes jump {
+    100% {
+        top: -0.66666667rem;
+    }
+}
+.box h2 {
+    margin-top: 0.42666667rem;
+    text-align: center;
+    font-size: 0.4rem;
+    color: #fff;
+}
+#change {
+    color: #fde817;
+}
+/*小彩灯*/
+.light {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6.93333333rem;
+}
+.light li {
+    position: relative;
+    width: 0.58666667rem;
+    height: 100%;
+}
+.light li p {
+    margin-bottom: 1.33333333rem;
+    width: 0.56rem;
+    height: 0.56rem;
+    background-image: url('../image/dark.png');
+}
+.light li p.blin {
+    background-image: url('../image/light.png');
+}
+/*游戏区域*/
+.play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    margin: -2.73333333rem 0 0 -4rem;
+    width: 8rem;
+    height: 5.86666667rem;
+}
+.play li {
+    position: relative;
+    float: left;
+    margin: 0.08rem 0 0 0.09333333rem;
+    width: 2.54666667rem;
+    height: 1.86666667rem;
+    /* background-image: url('../image/normal.png'); */
+}
+
+.play li:nth-child(4) {
+    left: 5.28rem;
+}
+.play li:nth-child(6) {
+    top: 1.94666667rem;
+}
+.play li:nth-child(7) {
+    left: 2.64rem;
+}
+.play li:nth-child(8) {
+    left: -2.64rem;
+}
+.play li:nth-child(9) {
+    left: -5.28rem;
+    top: -1.94666667rem;
+}
+.play li div {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 2px solid #ffdf4b;
+    border-radius: 9px;
+}
+/*奖品图片大小*/
+.play li div img {
+    width: 2.54666667rem;
+    height: 1.86666667rem;
+}
+.play li div p {
+    /* position: absolute;
+  left: 50%;
+  bottom: 0.13333333rem;
+  margin-left: -1.28rem;*/
+    width: 100%;
+    font-size: 0.29333333rem;
+    color: #f8320f;
+    line-height: 1.8rem;
+    font-size: 0.43rem;
+    font-weight: bold;
+}
+.play li.select {
+    background-image: url('../image/select.png');
+}
+/*开始按钮*/
+#btn {
+    background-image: url('../image/start.png');
+}
+/*奖品展示*/
+.awards {
+    top: 9.5rem;
+    padding: 0.3rem;
+    margin-left: -4.6rem;
+    width: 9.2rem;
+    background-color: #fd851f;
+    box-shadow: 0 0.26666667rem 0.26666667rem rgba(248, 85, 40, 0.5) inset;
+    border-radius: 0.13333333rem;
+    box-sizing: border-box;
+}
+/*规则弹窗背景色*/
+#mask-rule .box-rule {
+    background-color: #f7b50b;
+}
+#mask-rule .box-rule .star {
+    background-image: url('../image/star1.png');
+}
+
+.winning-body {
+    font-size: 17px;
+    font-weight: bold;
+    position: absolute;
+    color: gold;
+    bottom: 27%;
+    padding: 0 36px;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+
+.win-look {
+    position: absolute;
+    z-index: 99;
+    right: 5%;
+    top: 5%;
+    padding: 10px 20px;
+    z-index: 10;
+    color: #fff;
+    font-size: 17px;
+    border: #fff solid 1px;
+    border-radius: 5px;
+}
+
+.win-user{
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    top: 10%;
+    width: 100%;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+.prize-back-img{
+    position: absolute;
+    width: 100%;height: 100%;
+    left: 0;top: 0;
+    border-radius: 9px; 
+    z-index: -1;
+    opacity:0.8;
+}

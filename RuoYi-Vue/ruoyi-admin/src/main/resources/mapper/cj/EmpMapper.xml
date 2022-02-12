@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.cj.mapper.EmpMapper">
+    
+    <resultMap type="Emp" id="EmpResult">
+        <result property="id"    column="id"    />
+        <result property="empNo"    column="emp_no"    />
+        <result property="name"    column="name"    />
+        <result property="phone"    column="phone"    />
+        <result property="weighting"    column="weighting"    />
+    </resultMap>
+
+    <sql id="selectEmpVo">
+        select id, emp_no, name, phone, weighting from cj_emp
+    </sql>
+
+    <select id="selectEmpList" parameterType="Emp" resultMap="EmpResult">
+        <include refid="selectEmpVo"/>
+        <where>  
+            <if test="empNo != null  and empNo != ''"> and emp_no like concat('%', #{empNo}, '%')</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="weighting != null "> and weighting = #{weighting}</if>
+        </where>
+    </select>
+    
+    <select id="selectEmpById" parameterType="Integer" resultMap="EmpResult">
+        <include refid="selectEmpVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertEmp" parameterType="Emp">
+        insert into cj_emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="empNo != null and empNo != ''">emp_no,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="weighting != null">weighting,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="empNo != null and empNo != ''">#{empNo},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="weighting != null">#{weighting},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEmp" parameterType="Emp">
+        update cj_emp
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="empNo != null and empNo != ''">emp_no = #{empNo},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="weighting != null">weighting = #{weighting},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="updateEmpByEmpNo" parameterType="Emp">
+        update cj_emp
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="weighting != null">weighting = #{weighting},</if>
+        </trim>
+        where emp_no = #{empNo}
+    </update>
+
+    <delete id="deleteEmpById" parameterType="Integer">
+        delete from cj_emp where id = #{id}
+    </delete>
+
+    <delete id="deleteEmpByIds" parameterType="String">
+        delete from cj_emp where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectEmpByEmpNo" resultMap="EmpResult">
+        select
+             id, emp_no, name, phone, weighting
+        from
+             cj_emp
+        where
+            emp_no = #{empNo}
+    </select>
+</mapper>

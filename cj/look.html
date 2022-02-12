@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+        />
+        <link rel="stylesheet" href="./assets/vant.min.css" />
+        <link rel="stylesheet" href="./assets/comm.css" />
+        <link rel="stylesheet" href="./css/look.css" />
+        <script src="./assets/vue.min.js"></script>
+        <script src="./assets/axios.min.js"></script>
+        <script src="./assets/vant.min.js"></script>
+        <script src="./assets/request.js"></script>
+        <title>海云天科技中奖查看</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="flex logo h-center">
+                <img src="./logo.png" alt="海云天" />
+            </div>
+            <div class="look">
+                <div v-for="(item,index) in list" :key="`list_${index}`" class="tc mb10">
+                    恭喜工号{{item.jobNumber}}-{{item.userName}}：获得{{item.prizeName}}
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    list: [],
+                    loading: false
+                }
+            },
+            computed: {},
+            watch: {},
+            created() {
+                this.getList()
+            },
+            methods: {
+                async getList() {
+                    this.loading = true
+                    try {
+                        const params = {}
+                        const { data } = await getJSON(`/luck/lottery/list`, params)
+                        this.list = data
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    this.loading = false
+                }
+            }
+        })
+    </script>
+</html>

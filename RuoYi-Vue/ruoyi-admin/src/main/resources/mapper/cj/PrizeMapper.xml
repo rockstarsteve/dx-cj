@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.cj.mapper.PrizeMapper">
+    
+    <resultMap type="Prize" id="PrizeResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="info"    column="info"    />
+        <result property="backImg"    column="back_img"    />
+        <result property="stock"    column="stock"    />
+        <result property="remark"    column="remark"    />
+        <result property="win"    column="win"    />
+    </resultMap>
+
+    <sql id="selectPrizeVo">
+        select id, name, info, back_img, stock, remark,win from cj_prize
+    </sql>
+
+    <select id="selectPrizeList" parameterType="Prize" resultMap="PrizeResult">
+        <include refid="selectPrizeVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="info != null  and info != ''"> and info like concat('%', #{info}, '%')</if>
+            <if test="win != null "> and win = #{win}</if>
+        </where>
+    </select>
+    
+    <select id="selectPrizeById" parameterType="Integer" resultMap="PrizeResult">
+        <include refid="selectPrizeVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectPrizeByEmpNo" resultType="com.ruoyi.cj.domain.Prize">
+        select
+            p.id, p.name, p.info, p.back_img, p.stock, p.remark,p.win
+        from
+            cj_prize p
+            left join cj_emp_prize ep on ep.prize_id = p.id
+        where
+             ep.emp_id = #{empNo}
+    </select>
+
+    <insert id="insertPrize" parameterType="Prize" useGeneratedKeys="true" keyProperty="id">
+        insert into cj_prize
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="info != null">info,</if>
+            <if test="backImg != null">back_img,</if>
+            <if test="stock != null">stock,</if>
+            <if test="remark != null">remark,</if>
+            <if test="win != null">win,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="info != null">#{info},</if>
+            <if test="backImg != null">#{backImg},</if>
+            <if test="stock != null">#{stock},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="win != null">#{win},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePrize" parameterType="Prize">
+        update cj_prize
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="backImg != null">back_img = #{backImg},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="win != null">win = #{win},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePrizeById" parameterType="Integer">
+        delete from cj_prize where id = #{id}
+    </delete>
+
+    <delete id="deletePrizeByIds" parameterType="String">
+        delete from cj_prize where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectHasPrizeList" resultType="com.ruoyi.cj.domain.Prize">
+        SELECT
+            p.*
+        FROM
+            cj_prize p
+        WHERE
+            stock > 0
+    </select>
+</mapper>

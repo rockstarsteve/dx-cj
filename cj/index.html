@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="./assets/vant.min.css" />
+    <link rel="stylesheet" href="./assets/comm.css" />
+    <link rel="stylesheet" href="./assets//index.css" />
+    <script src="./assets/vue.min.js"></script>
+    <script src="./assets/axios.min.js"></script>
+    <script src="./assets/vant.min.js"></script>
+    <script src="./assets/request.js"></script>
+    <title>电信科技登录</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="flex logo h-center">
+            <img src="./logo.png" alt="电信科技" />
+        </div>
+        <div class="flex h-center mb-30">
+            <input v-model="jobNumber" type="text" class="cj-input" placeholder="请输入工号" @input="
+                        jobNumber = jobNumber.replace(
+                            /[^\d]/g,
+                            ''
+                        )
+                    " />
+        </div>
+        <div class="flex h-center mb-30">
+            <input v-model="jobName" type="text" class="cj-input" placeholder="请输入姓名" />
+        </div>
+        <div class="flex h-center">
+            <van-button class="cj-button" type="primary" plain hairline :disabled="loading" :loading="loading"
+                @click="handleLogin">登录
+            </van-button>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                jobNumber: '',
+                jobName: '',
+                loading: false
+            }
+        },
+        computed: {},
+        watch: {},
+        created() { },
+        methods: {
+            async handleLogin() {
+                if (!this.jobName) {
+                    vant.Toast.fail('请输入姓名')
+                    return
+                }
+                if (!this.jobNumber) {
+                    vant.Toast.fail('请输入工号')
+                    return
+                }
+                this.loading = true
+                try {
+                    const params = {}
+                    const datas = {}
+                    datas.name = this.jobName
+                    datas.empNo = this.jobNumber
+                    console.log(datas)
+                    const data = await postJSON(
+                        `/openapi/cj/login`,
+                        params,
+                        datas
+                    )
+                    if (data.code === 200) {
+                        console.log(data.data.empNo)
+                        console.log(data.data.name)
+                        localStorage.setItem("emp", JSON.stringify(data.data));
+                        window.location.href = `./lottery.html`
+                    } else {
+                        console.log(data.msg)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+                this.loading = false
+            }
+        }
+    })
+</script>
+
+</html>

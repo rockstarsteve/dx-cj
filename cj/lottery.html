@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>电信科技抽奖</title>
+    <link rel="stylesheet" href="./assets/comm.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/common_mobile.css?version=1.0.0" />
+    <link rel="stylesheet" href="./assets/vant.min.css" />
+    <link rel="stylesheet" href="css/index.css?version=1.0.0" />
+    <script src="./assets/vue.min.js"></script>
+    <script src="./assets/axios.min.js"></script>
+    <script src="./assets/request.js"></script>
+    <script src="./assets/vant.min.js"></script>
+
+    <!-- 移动端适配 -->
+    <script>
+        var html = document.querySelector('html')
+        changeRem()
+        window.addEventListener('resize', changeRem)
+
+        function changeRem() {
+            var width = html.getBoundingClientRect().width
+            html.style.fontSize = width / 10 + 'px'
+        }
+    </script>
+
+    <style>
+        .awards {
+            top: 9.5rem;
+            padding: 0.3rem;
+            margin-left: -4.6rem;
+            width: 9.2rem;
+            background-color: #fd851f;
+            box-shadow: 0 0.26666667rem 0.26666667rem rgba(248, 85, 40, 0.5) inset;
+            border-radius: 0.13333333rem;
+            box-sizing: border-box;
+        }
+
+        .awards p {
+            font-size: 0.4rem;
+            color: #340700;
+            line-height: 0.8rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin: 0 auto;
+            padding-top: 10vh;
+            padding-bottom: 100px;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="logo">
+            <img src="./logo.png" alt="电信" width="86"/>
+        </div>
+        <!--主体-->
+        <div class="main">
+            <!--游戏区域-->
+            <div class="box">
+                <!--九宫格-->
+                <ul class="play clearfix" id="playcontainer">
+                    <li class="prize select">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>一等奖</p>
+                        </div>
+                    </li>
+                    <li class="prize">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>二等奖</p>
+                        </div>
+                    </li>
+                    <li class="prize">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>三等奖</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p四等奖</p>
+                        </div>
+                    </li>
+                    <!--开始按钮-->
+                    <li id="btn"></li>
+                    <!--开始按钮-->
+                    <li class="prize">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>五等奖</p>
+                        </div>
+                    </li>
+                    <li class="prize">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>六等奖</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>    
+                            <p>七等奖</p>
+                        </div>
+                    </li>
+                    <li class="prize">
+                        <img src="./assets/test.jpg" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;border-radius: 9px; z-index: -1;"/>
+                        <div>
+                            <p>八等奖</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--中奖提示-->
+        <div id="mask">
+            <div class="blin"></div>
+            <div class="caidai"></div>
+            <div class="winning">
+                <div class="red-head"></div>
+                <div class="red-body">
+                    <span class="winning-body"></span>
+                </div>
+                <div id="card">
+                    <span class="win"></span>
+                </div>
+            </div>
+            <!-- <a href="look.html" class="win-look">查看中奖</a> -->
+            <div class="win-user"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
+    <script src="js/h5_game_common.js?version=1.0.0"></script>
+    <script src="js/index.js?version=1.0.0"></script>
+</body>
+
+</html>

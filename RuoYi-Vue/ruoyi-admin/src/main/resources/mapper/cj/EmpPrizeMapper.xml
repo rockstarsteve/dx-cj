@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.cj.mapper.EmpPrizeMapper">
+    
+    <resultMap type="EmpPrize" id="EmpPrizeResult">
+        <result property="id"    column="id"    />
+        <result property="empId"    column="emp_id"    />
+        <result property="prizeId"    column="prize_id"    />
+    </resultMap>
+
+    <sql id="selectEmpPrizeVo">
+        select id, emp_id, prize_id from cj_emp_prize
+    </sql>
+
+    <resultMap type="EmpPrize" id="EmpPrizeResult2">
+        <result property="id"    column="id"    />
+        <result property="empId"    column="emp_id"    />
+        <result property="prizeId"    column="prize_id"    />
+        <result property="empNo"    column="emp_no"    />
+        <result property="empName"    column="emp_name"    />
+        <result property="prizeName"    column="prize_name"    />
+        <result property="prizeInfo"    column="prize_info"    />
+    </resultMap>
+    <select id="selectEmpPrizeList" parameterType="EmpPrize" resultMap="EmpPrizeResult2">
+        select
+            ep.id, ep.emp_id, ep.prize_id,e.emp_no emp_no,e.name emp_name,p.name prize_name,p.info prize_info
+        from
+            cj_emp_prize ep
+            left join cj_emp e on ep.emp_id = e.id
+            left join cj_prize p on ep.prize_id = p.id
+        <where>  
+            <if test="empId != null "> and emp_id = #{empId}</if>
+            <if test="prizeId != null "> and prize_id = #{prizeId}</if>
+        </where>
+    </select>
+    
+    <select id="selectEmpPrizeById" parameterType="Integer" resultMap="EmpPrizeResult">
+        <include refid="selectEmpPrizeVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertEmpPrize" parameterType="EmpPrize">
+        insert into cj_emp_prize
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="empId != null">emp_id,</if>
+            <if test="prizeId != null">prize_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="empId != null">#{empId},</if>
+            <if test="prizeId != null">#{prizeId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEmpPrize" parameterType="EmpPrize">
+        update cj_emp_prize
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="empId != null">emp_id = #{empId},</if>
+            <if test="prizeId != null">prize_id = #{prizeId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEmpPrizeById" parameterType="Integer">
+        delete from cj_emp_prize where id = #{id}
+    </delete>
+
+    <delete id="deleteEmpPrizeByIds" parameterType="String">
+        delete from cj_emp_prize where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectEmpPrizeByEmpNo" resultType="com.ruoyi.cj.domain.EmpPrize">
+        <include refid="selectEmpPrizeVo"/>
+        <where>
+            emp_id = #{empId}
+        </where>
+    </select>
+</mapper>
